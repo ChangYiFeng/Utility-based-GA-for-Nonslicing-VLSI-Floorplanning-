@@ -1,0 +1,31 @@
+reset
+set encoding utf8
+set style data lines
+set style fill transparent solid 0.50 noborder
+set datafile separator ","
+set xlabel 'evaluation times (10^4)'
+set ylabel 'area utility(%)'
+set xrange [ * : * ] noreverse writeback
+set yrange [ * : * ] noreverse writeback
+set key at 19.6, 0.26
+Shadecolor1 = "#EFDFBB"
+Shadecolor2 = "#afeddc"
+Shadecolor3 = "#E7E1D2"
+
+
+set terminal postscript color font "Times-New-Roman,23"
+set output "n300exp.eps"
+
+plot "n300exp.csv" using 14:2:15 with yerrorbars linewidth 2 lc rgb "#0093c4" notitle, \
+"n300exp.csv" using 14:6:16 with yerrorbars linewidth 2 lc rgb "#e06900" notitle, \
+"n300exp.csv" using 14:10:17 with yerrorbars linewidth 2 lc rgb "#4ba600" notitle, \
+"n300exp.csv" using 14:2 smooth mcspline lw 3 lc rgb "#0093c4" title 'time-varying GA', \
+"n300exp.csv" using 14:6 dt 2 lw 3 lc rgb "#e06900" title 'GA', \
+"n300exp.csv" using 14:10 dt 4 lw 3 lc rgb "#4ba600" title 'SA'
+
+#"n300exp.csv" using 14:($2+$5):($2-$5) with filledcurve fc rgb Shadecolor1 notitle, \
+#"n300exp.csv" using 14:2 smooth mcspline lw 3 title 'deterministic', \
+#"n300exp.csv" using 14:($6+$9):($6-$9) with filledcurve fc rgb Shadecolor2 notitle, \
+#"n300exp.csv" using 14:6 smooth mcspline lw 3 title 'GA'
+#"n300exp.csv" using 14:10 smooth mcspline lw 3 title 'SA', \
+#"n300exp.csv" using 14:($10+$13):($10-$13) with filledcurve fc rgb Shadecolor3 notitle

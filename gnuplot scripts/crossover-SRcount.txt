@@ -1,0 +1,21 @@
+set terminal postscript eps enhanced color font "Arial, 26.5"
+
+reset
+set encoding utf8
+set style data lines
+set datafile separator ","
+set xlabel 'Generation'
+set ylabel 'Success rate'
+set xrange [ * : * ] noreverse writeback
+set yrange [ * : * ] noreverse writeback
+set key right top
+set ytics 0.05
+set format y "% 1.2f"
+#set terminal postscript color font "Times-New-Roman,26.5"
+#set logscale y 10
+
+set output "ami49-crossover-SRcount.eps"
+
+plot "ami49-crossover-SRcount.csv" using 1:2 linewidth 5 dt 1 title 'Left subtree', \
+"ami49-crossover-SRcount.csv" using 1:4 linewidth 5 dt 4 title 'Random subtree', \
+"ami49-crossover-SRcount.csv" using 1:3 linewidth 5 dt 3 title 'Order'

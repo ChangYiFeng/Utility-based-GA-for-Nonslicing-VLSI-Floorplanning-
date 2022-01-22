@@ -1,0 +1,15 @@
+reset
+set boxwidth 0.5
+set style fill solid 0.25
+set datafile separator ","
+set yrange [0:2200]
+set xlabel 'mutation operators' offset 0, -1
+set ylabel "improved amount" offset 0.7
+set terminal postscript color font "Times-New-Roman,23"
+set xtics rotate
+set style fill pattern border
+set output "n300-Mutation_first10_-TotalImprovedAmount.eps"
+unset key
+set grid y lt 1 lw .75 lc "gray
+
+plot "n300-Mutation_fisrt10_ImproveAmountSum.csv" using 1:3:xtic(2) with boxes fs solid 0.5 fill pattern 2 

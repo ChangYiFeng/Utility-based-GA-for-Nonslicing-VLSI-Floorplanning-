@@ -1,0 +1,35 @@
+set terminal postscript eps enhanced color font "Arial, 25"
+reset
+set boxwidth 0.9 absolute
+set style fill   solid 1.00 border lt -1
+#set key fixed right top vertical Right noreverse noenhanced autotitle nobox
+unset key
+set style histogram clustered gap 1 title textcolor lt -1
+set datafile missing '-'
+set datafile separator ","
+set style data histograms
+#set xlabel 'Crossover operators' offset 0,-1
+set ylabel "Area improved (um^2)" 
+set ytics 0.1
+set format y "% 1.1f"
+set size ratio 0.65
+#set terminal postscript color font "Times-New-Roman,25" 
+set bmargin 5
+set rmargin 1
+set xtics  norangelimit 
+set xtics offset 0,-1
+set xrange [ * : * ] noreverse writeback
+#set x2range [ * : * ] noreverse writeback
+set yrange [ * : 0.5 ] noreverse writeback
+#set y2range [ * : * ] noreverse writeback
+#set zrange [ * : * ] noreverse writeback
+#set cbrange [ * : * ] noreverse writeback
+#set rrange [ * : * ] noreverse writeback
+#NO_ANIMATION = 1
+
+#set logscale y 10
+set xtics rotate by 45 right offset -0.3,0
+set output "ami49-ImprovedAmount_100gen_Mutation.eps"
+
+
+plot 'ami49_improved_100sum_Mutation.csv' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col

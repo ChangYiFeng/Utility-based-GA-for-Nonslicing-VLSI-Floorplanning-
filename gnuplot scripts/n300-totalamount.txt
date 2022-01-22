@@ -1,0 +1,23 @@
+reset
+set terminal postscript eps enhanced color font "Arial, 25"
+set boxwidth 0.5
+set style fill solid 0.25
+set datafile separator ","
+set yrange [0:0.03]
+set xlabel 'Operators' offset 0, 0
+set ylabel "Area improved (10^{-2} mm^2)" offset 0.4
+#set terminal postscript color font "Times-New-Roman,25"
+set xtics rotate by 60 right offset -0.3,0
+
+set format y "%2.1t"
+#set label "10^-2" at 0,2
+#set format y "%a.be"
+set style fill pattern border
+set output "n300-TotalImprovedAmount.eps"
+set key right top
+set grid y lt 1 lw .75 lc "gray
+set rmargin 2
+set bmargin 7
+
+plot "n300-ImproveAmountSum.csv" using 1:4:xtic(2) title 'Crossover' with boxes fs solid 0.5 fill pattern 1, \
+"n300-ImproveAmountSum.csv" using 5:8:xtic(6) title 'Mutation' with boxes fs solid 0.2 fill patter 4, \

@@ -1,0 +1,34 @@
+reset
+set terminal postscript eps enhanced color font "Arial, 24"
+set encoding utf8
+set style data lines
+#set style fill transparent solid 0.50 noborder
+set termoption dash
+set datafile separator ","
+set xlabel '# Evaluation times (10^3)'
+set ylabel 'Fitness value'
+set xrange [ * : * ] noreverse writeback
+set yrange [ * : * ] noreverse writeback
+set ytics 0.1
+set key right bottom
+Shadecolor1 = "#EFDFBB"
+Shadecolor2 = "#afeddc"
+Shadecolor3 = "#E7E1D2"
+
+
+#set terminal postscript color font "Times-New-Roman,24"
+set output "n300exp_fitness_stderr.eps"
+
+plot "n300exp.csv" using 14:18 dt 1 lw 4 lc rgb "#0093c4" title 'Util\_based GA', \
+"n300exp.csv" using 14:19 dt 2 lw 4 lc rgb "#e06900" title 'GA', \
+"n300exp.csv" using 14:20 dt 4 lw 4 lc rgb "#4ba600" title 'SA', \
+"n300exp.csv" using 14:18:15 with yerrorbars linewidth 2 lc rgb "#0093c4" notitle, \
+"n300exp.csv" using 14:19:16 with yerrorbars linewidth 2 lc rgb "#e06900" notitle, \
+"n300exp.csv" using 14:20:17 with yerrorbars linewidth 2 lc rgb "#4ba600" notitle
+
+#"n300exp.csv" using 14:($2+$5):($2-$5) with filledcurve fc rgb Shadecolor1 notitle, \
+#"n300exp.csv" using 14:2 smooth mcspline lw 3 title 'deterministic', \
+#"n300exp.csv" using 14:($6+$9):($6-$9) with filledcurve fc rgb Shadecolor2 notitle, \
+#"n300exp.csv" using 14:6 smooth mcspline lw 3 title 'GA'
+#"n300exp.csv" using 14:10 smooth mcspline lw 3 title 'SA', \
+#"n300exp.csv" using 14:($10+$13):($10-$13) with filledcurve fc rgb Shadecolor3 notitle
